@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "263838544087",
+    "project_id": "persotrainerdev",
+    "storage_bucket": "persotrainerdev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:263838544087:android:efc83be27a82ba6f564092",
+        "android_client_info": {
+          "package_name": "com.dziakstudio.persotrainer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "263838544087-pbemg1il7m5ets5s4c6ohsmcsdgoi4vl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dziakstudio.persotrainer",
+            "certificate_hash": "dd56179e4dbf67d4ca83f408dccc6bb10d4a450e"
+          }
+        },
+        {
+          "client_id": "263838544087-741lv37kldm8jabu6fb6sgajrl3i4aae.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoEyf5nh_P7Tm_sugQn7ZZXSfBSKTbg-0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "263838544087-741lv37kldm8jabu6fb6sgajrl3i4aae.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
