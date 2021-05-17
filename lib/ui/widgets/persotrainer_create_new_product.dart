@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:persotrainer/ui/views/add_service.dart';
-import 'package:persotrainer/ui/widgets/persotrainer_button.dart';
 import 'package:flutter_screenutil/size_extension.dart';
+import 'package:persotrainer/ui/views/add_product.dart';
+import 'package:persotrainer/ui/widgets/persotrainer_button.dart';
 
 class PersoTrainerCreateNewProduct extends StatefulWidget {
   @override
@@ -57,7 +57,7 @@ class _PersoTrainerCreateNewProductState
                 width: 280,
                 child: PersoTrainerButton('CREATE NEW PRODUCT', () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => AddService()));
+                      MaterialPageRoute(builder: (context) => AddProduct()));
                 })),
           ],
         ),

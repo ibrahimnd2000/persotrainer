@@ -1,8 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:persotrainer/models/category.dart';
 import 'package:persotrainer/models/chat.dart';
 import 'package:persotrainer/models/chatRoom.dart';
 import 'package:persotrainer/models/meeting_model.dart';
 import 'package:persotrainer/models/post.dart';
+import 'package:persotrainer/models/product.dart';
 import 'package:persotrainer/models/user.dart';
 
 class DatabaseService {
@@ -18,6 +20,28 @@ class DatabaseService {
         .catchError((e) {
       print(e.toString());
     });
+  }
+
+  Future<void> addProduct(String userId, Product product) async {
+    return await _firebaseFirestore
+        .collection('users')
+        .doc(userId)
+        .collection('products')
+        .doc(DateTime.now().millisecondsSinceEpoch.toString())
+        .set(product.toJson())
+        .catchError((e) {
+      print(e.toString());
+    });
+  }
+
+  Future<List<Product>> getProducts(String userId) async {
+    QuerySnapshot qs = await _firebaseFirestore
+        .collection('users')
+        .doc(userId)
+        .collection('products')
+        .get();
+
+    return qs.docs.map((e) => Product.fromJson(e.data())).toList();
   }
 
   Stream<List<Post>> getPosts() {
@@ -131,5 +155,32 @@ class DatabaseService {
     } catch (e) {
       print(e);
     }
+  }
+
+  Future<void> addCategory(Category category, String userId) async {
+    try {
+      return await _firebaseFirestore
+          .collection('users')
+          .doc(userId)
+          .collection('category')
+          .doc(category.title)
+          .set(category.toJson())
+          .catchError((e) {
+        print(e);
+      });
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  Stream<List<Category>> loadCategories(String userId) {
+    Stream<QuerySnapshot> qS = _firebaseFirestore
+        .collection('users')
+        .doc(userId)
+        .collection('category')
+        .snapshots();
+
+    return qS.map((qShot) =>
+        qShot.docs.map((doc) => Category.fromJson(doc.data())).toList());
   }
 }

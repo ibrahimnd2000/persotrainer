@@ -61,7 +61,10 @@ class _PersoTrainerCreateNewServiceState
             ),
             Container(
                 width: 280,
-                child: PersoTrainerButton('CREATE NEW SERVICE', () {})),
+                child: PersoTrainerButton('CREATE NEW SERVICE', () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => AddService()));
+                })),
           ],
         ),
       ),

@@ -141,6 +141,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.5.0"
+  circular_countdown_timer:
+    dependency: "direct main"
+    description:
+      name: circular_countdown_timer
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.0"
   cli_util:
     dependency: transitive
     description:
@@ -253,6 +260,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "6.1.0"
+  file_picker:
+    dependency: "direct main"
+    description:
+      name: file_picker
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.1"
   firebase_auth:
     dependency: "direct main"
     description:

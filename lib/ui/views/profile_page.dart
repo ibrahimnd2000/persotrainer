@@ -1,19 +1,23 @@
+import 'dart:math' as math;
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/size_extension.dart';
-import 'package:hive/hive.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:persotrainer/models/user.dart';
 import 'package:persotrainer/states/seller_state.dart';
 import 'package:persotrainer/states/user_state.dart';
 import 'package:persotrainer/ui/views/add_a_service.dart';
-import 'package:persotrainer/ui/views/add_service.dart';
+import 'package:persotrainer/ui/views/add_categories.dart';
+import 'package:persotrainer/ui/views/add_product_to_category.dart';
 import 'package:persotrainer/ui/views/availability.dart';
+import 'package:persotrainer/ui/views/bottom_tabs/manage_order.dart';
+import 'package:persotrainer/ui/views/create_category.dart';
 import 'package:persotrainer/ui/views/earning_page.dart';
 import 'package:persotrainer/ui/views/edit_profile_seller.dart';
+import 'package:persotrainer/ui/views/my_packages.dart';
 import 'package:persotrainer/ui/views/verification_screen.dart';
 import 'package:provider/provider.dart';
-import 'dart:math' as math;
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -661,110 +665,124 @@ class _ProfilePageState extends State<ProfilePage> {
                                     height: 1,
                                     color: Colors.grey.shade200,
                                   ),
-                                  Container(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 8.0, vertical: 12.0),
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                    ),
-                                    child: Row(
-                                      children: [
-                                        ShaderMask(
-                                          child: Image(
-                                            image: AssetImage(
-                                                'assets/images/icons/box (1).png'),
-                                            height: 25,
-                                            width: 25,
+                                  GestureDetector(
+                                    onTap: () => Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                MyPackages())),
+                                    child: Container(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 8.0, vertical: 12.0),
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                      ),
+                                      child: Row(
+                                        children: [
+                                          ShaderMask(
+                                            child: Image(
+                                              image: AssetImage(
+                                                  'assets/images/icons/box (1).png'),
+                                              height: 25,
+                                              width: 25,
+                                            ),
+                                            shaderCallback: (Rect bounds) {
+                                              return LinearGradient(
+                                                begin: Alignment.topCenter,
+                                                end: Alignment.bottomCenter,
+                                                colors: [
+                                                  Color(0xFF54C4C1),
+                                                  Color(0xFF6BD397)
+                                                ],
+                                                stops: [
+                                                  0.0,
+                                                  1.0,
+                                                ],
+                                              ).createShader(bounds);
+                                            },
+                                            blendMode: BlendMode.srcATop,
                                           ),
-                                          shaderCallback: (Rect bounds) {
-                                            return LinearGradient(
-                                              begin: Alignment.topCenter,
-                                              end: Alignment.bottomCenter,
-                                              colors: [
-                                                Color(0xFF54C4C1),
-                                                Color(0xFF6BD397)
-                                              ],
-                                              stops: [
-                                                0.0,
-                                                1.0,
-                                              ],
-                                            ).createShader(bounds);
-                                          },
-                                          blendMode: BlendMode.srcATop,
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text(
-                                          "My Packages/Bundles",
-                                          style: GoogleFonts.poppins(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w500,
+                                          SizedBox(
+                                            width: 10,
                                           ),
-                                        ),
-                                        Spacer(),
-                                        Icon(
-                                          Icons.arrow_forward_ios,
-                                          size: 15,
-                                        ),
-                                      ],
+                                          Text(
+                                            "My Packages/Bundles",
+                                            style: GoogleFonts.poppins(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                          Spacer(),
+                                          Icon(
+                                            Icons.arrow_forward_ios,
+                                            size: 15,
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                   Container(
                                     height: 1,
                                     color: Colors.grey.shade200,
                                   ),
-                                  Container(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 8.0, vertical: 12.0),
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.only(
-                                        bottomRight: Radius.circular(16.0),
-                                        bottomLeft: Radius.circular(16.0),
+                                  GestureDetector(
+                                    onTap: () => Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => ManageOrder(),
+                                        )),
+                                    child: Container(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 8.0, vertical: 12.0),
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.only(
+                                          bottomRight: Radius.circular(16.0),
+                                          bottomLeft: Radius.circular(16.0),
+                                        ),
                                       ),
-                                    ),
-                                    child: Row(
-                                      children: [
-                                        ShaderMask(
-                                          child: Image(
-                                            image: AssetImage(
-                                                'assets/images/icons/box.png'),
-                                            height: 25,
-                                            width: 25,
+                                      child: Row(
+                                        children: [
+                                          ShaderMask(
+                                            child: Image(
+                                              image: AssetImage(
+                                                  'assets/images/icons/box.png'),
+                                              height: 25,
+                                              width: 25,
+                                            ),
+                                            shaderCallback: (Rect bounds) {
+                                              return LinearGradient(
+                                                begin: Alignment.topCenter,
+                                                end: Alignment.bottomCenter,
+                                                colors: [
+                                                  Color(0xFF54C4C1),
+                                                  Color(0xFF6BD397)
+                                                ],
+                                                stops: [
+                                                  0.0,
+                                                  1.0,
+                                                ],
+                                              ).createShader(bounds);
+                                            },
+                                            blendMode: BlendMode.srcATop,
                                           ),
-                                          shaderCallback: (Rect bounds) {
-                                            return LinearGradient(
-                                              begin: Alignment.topCenter,
-                                              end: Alignment.bottomCenter,
-                                              colors: [
-                                                Color(0xFF54C4C1),
-                                                Color(0xFF6BD397)
-                                              ],
-                                              stops: [
-                                                0.0,
-                                                1.0,
-                                              ],
-                                            ).createShader(bounds);
-                                          },
-                                          blendMode: BlendMode.srcATop,
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text(
-                                          "Manage orders",
-                                          style: GoogleFonts.poppins(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w500,
+                                          SizedBox(
+                                            width: 10,
                                           ),
-                                        ),
-                                        Spacer(),
-                                        Icon(
-                                          Icons.arrow_forward_ios,
-                                          size: 15,
-                                        ),
-                                      ],
+                                          Text(
+                                            "Manage orders",
+                                            style: GoogleFonts.poppins(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                          Spacer(),
+                                          Icon(
+                                            Icons.arrow_forward_ios,
+                                            size: 15,
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   )
                                 ],
@@ -857,163 +875,185 @@ class _ProfilePageState extends State<ProfilePage> {
                                     height: 1,
                                     color: Colors.grey.shade200,
                                   ),
-                                  Container(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 8.0, vertical: 12.0),
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                    ),
-                                    child: Row(
-                                      children: [
-                                        ShaderMask(
-                                          child: Image(
-                                            image: AssetImage(
-                                                'assets/images/icons/list.png'),
-                                            height: 25,
-                                            width: 25,
-                                          ),
-                                          shaderCallback: (Rect bounds) {
-                                            return LinearGradient(
-                                              begin: Alignment.topCenter,
-                                              end: Alignment.bottomCenter,
-                                              colors: [
-                                                Color(0xFF54C4C1),
-                                                Color(0xFF6BD397)
-                                              ],
-                                              stops: [
-                                                0.0,
-                                                1.0,
-                                              ],
-                                            ).createShader(bounds);
-                                          },
-                                          blendMode: BlendMode.srcATop,
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text(
-                                          "Add Categories",
-                                          style: GoogleFonts.poppins(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
-                                        Spacer(),
-                                        Icon(
-                                          Icons.arrow_forward_ios,
-                                          size: 15,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Container(
-                                    height: 1,
-                                    color: Colors.grey.shade200,
-                                  ),
-                                  Container(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 8.0, vertical: 12.0),
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                    ),
-                                    child: Row(
-                                      children: [
-                                        ShaderMask(
-                                          child: Image(
-                                            image: AssetImage(
-                                                'assets/images/icons/draw.png'),
-                                            height: 25,
-                                            width: 25,
-                                          ),
-                                          shaderCallback: (Rect bounds) {
-                                            return LinearGradient(
-                                              begin: Alignment.topCenter,
-                                              end: Alignment.bottomCenter,
-                                              colors: [
-                                                Color(0xFF54C4C1),
-                                                Color(0xFF6BD397)
-                                              ],
-                                              stops: [
-                                                0.0,
-                                                1.0,
-                                              ],
-                                            ).createShader(bounds);
-                                          },
-                                          blendMode: BlendMode.srcATop,
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text(
-                                          "Create Category",
-                                          style: GoogleFonts.poppins(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
-                                        Spacer(),
-                                        Icon(
-                                          Icons.arrow_forward_ios,
-                                          size: 15,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Container(
-                                    height: 1,
-                                    color: Colors.grey.shade200,
-                                  ),
-                                  Container(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 8.0, vertical: 12.0),
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.only(
-                                        bottomRight: Radius.circular(16.0),
-                                        bottomLeft: Radius.circular(16.0),
+                                  GestureDetector(
+                                    onTap: () => Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => AddCategory(),
                                       ),
                                     ),
-                                    child: Row(
-                                      children: [
-                                        ShaderMask(
-                                          child: Image(
-                                            image: AssetImage(
-                                                'assets/images/icons/box (1).png'),
-                                            height: 30,
-                                            width: 30,
+                                    child: Container(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 8.0, vertical: 12.0),
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                      ),
+                                      child: Row(
+                                        children: [
+                                          ShaderMask(
+                                            child: Image(
+                                              image: AssetImage(
+                                                  'assets/images/icons/list.png'),
+                                              height: 25,
+                                              width: 25,
+                                            ),
+                                            shaderCallback: (Rect bounds) {
+                                              return LinearGradient(
+                                                begin: Alignment.topCenter,
+                                                end: Alignment.bottomCenter,
+                                                colors: [
+                                                  Color(0xFF54C4C1),
+                                                  Color(0xFF6BD397)
+                                                ],
+                                                stops: [
+                                                  0.0,
+                                                  1.0,
+                                                ],
+                                              ).createShader(bounds);
+                                            },
+                                            blendMode: BlendMode.srcATop,
                                           ),
-                                          shaderCallback: (Rect bounds) {
-                                            return LinearGradient(
-                                              begin: Alignment.topCenter,
-                                              end: Alignment.bottomCenter,
-                                              colors: [
-                                                Color(0xFF54C4C1),
-                                                Color(0xFF6BD397)
-                                              ],
-                                              stops: [
-                                                0.0,
-                                                1.0,
-                                              ],
-                                            ).createShader(bounds);
-                                          },
-                                          blendMode: BlendMode.srcATop,
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text(
-                                          "Add Products to category",
-                                          style: GoogleFonts.poppins(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w500,
+                                          SizedBox(
+                                            width: 10,
                                           ),
+                                          Text(
+                                            "Add Categories",
+                                            style: GoogleFonts.poppins(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                          Spacer(),
+                                          Icon(
+                                            Icons.arrow_forward_ios,
+                                            size: 15,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    height: 1,
+                                    color: Colors.grey.shade200,
+                                  ),
+                                  GestureDetector(
+                                    onTap: () => Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                CreateCategory())),
+                                    child: Container(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 8.0, vertical: 12.0),
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                      ),
+                                      child: Row(
+                                        children: [
+                                          ShaderMask(
+                                            child: Image(
+                                              image: AssetImage(
+                                                  'assets/images/icons/draw.png'),
+                                              height: 25,
+                                              width: 25,
+                                            ),
+                                            shaderCallback: (Rect bounds) {
+                                              return LinearGradient(
+                                                begin: Alignment.topCenter,
+                                                end: Alignment.bottomCenter,
+                                                colors: [
+                                                  Color(0xFF54C4C1),
+                                                  Color(0xFF6BD397)
+                                                ],
+                                                stops: [
+                                                  0.0,
+                                                  1.0,
+                                                ],
+                                              ).createShader(bounds);
+                                            },
+                                            blendMode: BlendMode.srcATop,
+                                          ),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          Text(
+                                            "Create Category",
+                                            style: GoogleFonts.poppins(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                          Spacer(),
+                                          Icon(
+                                            Icons.arrow_forward_ios,
+                                            size: 15,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    height: 1,
+                                    color: Colors.grey.shade200,
+                                  ),
+                                  GestureDetector(
+                                    onTap: () => Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                AddProductToCategory())),
+                                    child: Container(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 8.0, vertical: 12.0),
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.only(
+                                          bottomRight: Radius.circular(16.0),
+                                          bottomLeft: Radius.circular(16.0),
                                         ),
-                                        Spacer(),
-                                        Icon(
-                                          Icons.arrow_forward_ios,
-                                          size: 15,
-                                        ),
-                                      ],
+                                      ),
+                                      child: Row(
+                                        children: [
+                                          ShaderMask(
+                                            child: Image(
+                                              image: AssetImage(
+                                                  'assets/images/icons/box (1).png'),
+                                              height: 30,
+                                              width: 30,
+                                            ),
+                                            shaderCallback: (Rect bounds) {
+                                              return LinearGradient(
+                                                begin: Alignment.topCenter,
+                                                end: Alignment.bottomCenter,
+                                                colors: [
+                                                  Color(0xFF54C4C1),
+                                                  Color(0xFF6BD397)
+                                                ],
+                                                stops: [
+                                                  0.0,
+                                                  1.0,
+                                                ],
+                                              ).createShader(bounds);
+                                            },
+                                            blendMode: BlendMode.srcATop,
+                                          ),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          Text(
+                                            "Add Products to category",
+                                            style: GoogleFonts.poppins(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                          Spacer(),
+                                          Icon(
+                                            Icons.arrow_forward_ios,
+                                            size: 15,
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ],

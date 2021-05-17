@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/size_extension.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:flutter_screenutil/size_extension.dart';
 import 'package:persotrainer/models/meeting_model.dart';
 import 'package:persotrainer/services/database_service.dart';
 import 'package:provider/provider.dart';
@@ -22,7 +22,7 @@ class _EditScheduleState extends State<EditSchedule> {
   void initState() {
     super.initState();
     startFrom = DateTime.now().add(Duration(hours: 1));
-    endTo = DateTime.now().add(Duration(minutes: 45));
+    endTo = startFrom.add(Duration(minutes: 45));
   }
 
   void _showDatePicker(BuildContext ctx, String type) {
@@ -41,13 +41,10 @@ class _EditScheduleState extends State<EditSchedule> {
                         use24hFormat: false,
                         initialDateTime:
                             type == 'startFrom' ? startFrom : endTo,
-                        onDateTimeChanged: (val) {
+                        onDateTimeChanged: (DateTime val) {
                           setState(() {
-                            if (type == 'startFrom') {
-                              startFrom = val;
-                            } else {
-                              endTo = val;
-                            }
+                            startFrom = val;
+                            endTo = startFrom.add(Duration(minutes: 45));
                           });
                         }),
                   ),
@@ -189,9 +186,7 @@ class _EditScheduleState extends State<EditSchedule> {
                       height: 5,
                     ),
                     GestureDetector(
-                      onTap: () {
-                        _showDatePicker(context, 'endTo');
-                      },
+                      onTap: () {},
                       child: Container(
                         width: 1.sw,
                         height: 50,
@@ -224,7 +219,7 @@ class _EditScheduleState extends State<EditSchedule> {
                           width: 5,
                         ),
                         Text(
-                          'Do you want it for all-day ?',
+                          'Do you want to set a reminder ?',
                           style: GoogleFonts.poppins(fontSize: 18),
                         )
                       ],
